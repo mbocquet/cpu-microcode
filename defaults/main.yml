@@ -1,0 +1,9 @@
+---
+# defaults file for cpu-microcode
+intel_cpu_packages:
+  - 'intel-microcode'
+  - 'iucode-tool'
+
+amd_cpu_packages:
+  - 'amd64-microcode'
+...

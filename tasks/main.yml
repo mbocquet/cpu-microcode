@@ -1,0 +1,59 @@
+---
+# tasks file for cpu-microcode
+
+- name: get CPU vendor
+  set_fact:
+    cpu_vendor: 'intel'
+  when: ansible_processor | lower is search("intel")
+  tags:
+    - microcode
+    - vendor
+
+- name: get CPU vendor
+  set_fact:
+    cpu_vendor: 'amd'
+  when: ansible_processor | lower is search("amd")
+  tags:
+    - microcode
+    - vendor
+
+- name: add related package(s)
+  package:
+    name: "{{ intel_cpu_packages }}"
+  when: cpu_vendor == 'intel'
+  tags:
+    - microcode
+    - packages
+    - add
+
+- name: add related package(s)
+  package:
+    name: "{{ amd_cpu_packages }}"
+  when: cpu_vendor == 'amd'
+  tags:
+    - microcode
+    - packages
+    - add
+
+- name: remove non related package
+  package:
+    name: "{{ intel_cpu_packages }}"
+    state: absent
+    purge: yes
+  when: cpu_vendor == 'amd'
+  tags:
+    - microcode
+    - packages
+    - del
+
+- name: remove non related package
+  package:
+    name: "{{ amd_cpu_packages }}"
+    state: absent
+    purge: yes
+  when: cpu_vendor == 'intel'
+  tags:
+    - microcode
+    - packages
+    - del
+...
