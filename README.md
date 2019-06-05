@@ -14,11 +14,11 @@ None.
 
 None.
 
-## Example Playbook
-
 ## Install this role as submodule in a git repository
 
 `git submodule add https://github.com/mbocquet/cpu-microcode.git roles/cpu-microcode`
+
+## Example Playbook
 
 
     - hosts: servers
