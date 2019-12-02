@@ -16,7 +16,7 @@ None.
 
 ## Install this role as submodule in a git repository
 
-`git submodule add https://github.com/mbocquet/cpu-microcode.git roles/cpu-microcode`
+`git submodule add https://git.Sekoya.org/mb/cpu-microcode.git roles/cpu-microcode`
 
 ## Example Playbook
 
