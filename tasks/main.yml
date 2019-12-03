@@ -19,7 +19,7 @@
 - name: add related package(s)
   package:
     name: "{{ intel_cpu_packages }}"
-    force_apt_get: true
+    force_apt_get: yes
   when:
     - ansible_virtualization_role == 'host'
     - cpu_vendor == 'intel'
@@ -31,7 +31,7 @@
 - name: add related package(s)
   package:
     name: "{{ amd_cpu_packages }}"
-    force_apt_get: true
+    force_apt_get: yes
   when:
     - ansible_virtualization_role == 'host'
     - cpu_vendor == 'amd'
@@ -43,7 +43,7 @@
 - name: remove non related package
   package:
     name: "{{ intel_cpu_packages }}"
-    force_apt_get: true
+    force_apt_get: yes
     state: absent
     purge: yes
   when: cpu_vendor == 'amd' or ansible_virtualization_role == 'guest'
@@ -55,7 +55,7 @@
 - name: remove non related package
   package:
     name: "{{ amd_cpu_packages }}"
-    force_apt_get: true
+    force_apt_get: yes
     state: absent
     purge: yes
   when: cpu_vendor == 'intel' or ansible_virtualization_role == 'guest'
