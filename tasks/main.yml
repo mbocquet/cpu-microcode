@@ -16,6 +16,14 @@
     - microcode
     - vendor
 
+- name: get CPU vendor
+  set_fact:
+    cpu_vendor: 'arm'
+  when: ansible_processor | lower is search("arm")
+  tags:
+    - microcode
+    - vendor
+
 - name: add related package(s)
   package:
     name: "{{ intel_cpu_packages }}"
