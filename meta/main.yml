@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Mathias BOCQUET
   description: Ansible role to handle cpu microcode and firmware packages
@@ -10,11 +11,11 @@ galaxy_info:
   min_ansible_version: 2.4
 
   platforms:
-  - name: Debian
-    versions:
-    - jessie
-    - stretch
-    - buster
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+        - buster
 
   galaxy_tags:
     - cpu
@@ -23,3 +24,4 @@ galaxy_info:
     - sysadmin
 
 dependencies: []
+...
