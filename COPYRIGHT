@@ -1,6 +1,6 @@
 'cpu-microcode'. Ansible role to handle cpu microcode and firmware packages.
 
-Copyright © 2019 Mathias Bocquet (mbocquet@sekoya.org)
+Copyright © 2019-2023 Mathias Bocquet (mbocquet@sekoya.org)
 
 This file is part of 'cpu-microcode' Ansible role.
 
