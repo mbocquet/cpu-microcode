@@ -1,6 +1,7 @@
 ---
 # tasks file for cpu-microcode
 - name: cpu-microcode
+  when: ansible_architecture == "x86_64"
   block:
     - name: get CPU vendor
       set_fact:
@@ -61,5 +62,3 @@
         - microcode
         - package
         - del
-
-  when: ansible_architecture == "x86_64"
