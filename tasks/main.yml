@@ -4,7 +4,7 @@
   when: ansible_architecture == "x86_64"
   block:
     - name: get CPU vendor
-      set_fact:
+      ansible.builtin.set_fact:
         cpu_vendor: 'intel'
       when: ansible_processor | lower is search("intel")
       tags:
@@ -12,7 +12,7 @@
         - vendor
 
     - name: get CPU vendor
-      set_fact:
+      ansible.builtin.set_fact:
         cpu_vendor: 'amd'
       when: ansible_processor | lower is search("amd")
       tags:
@@ -20,7 +20,7 @@
         - vendor
 
     - name: add related package(s)
-      package:
+      ansible.builtin.package:
         name: "{{ intel_cpu_packages }}"
       when:
         - ansible_virtualization_role == 'host'
@@ -31,7 +31,7 @@
         - add
 
     - name: add related package(s)
-      package:
+      ansible.builtin.package:
         name: "{{ amd_cpu_packages }}"
       when:
         - ansible_virtualization_role == 'host'
@@ -42,7 +42,7 @@
         - add
 
     - name: remove non related package
-      package:
+      ansible.builtin.package:
         name: "{{ intel_cpu_packages }}"
         state: absent
         purge: true
@@ -53,7 +53,7 @@
         - del
 
     - name: remove non related package
-      package:
+      ansible.builtin.package:
         name: "{{ amd_cpu_packages }}"
         state: absent
         purge: true
