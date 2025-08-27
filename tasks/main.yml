@@ -1,9 +1,9 @@
 ---
 # tasks file for cpu-microcode
-- name: cpu-microcode
+- name: Cpu-microcode
   when: ansible_architecture == "x86_64"
   block:
-    - name: get CPU vendor
+    - name: Get CPU vendor
       ansible.builtin.set_fact:
         cpu_vendor: 'intel'
       when: ansible_processor | lower is search("intel")
@@ -11,7 +11,7 @@
         - microcode
         - vendor
 
-    - name: get CPU vendor
+    - name: Get CPU vendor
       ansible.builtin.set_fact:
         cpu_vendor: 'amd'
       when: ansible_processor | lower is search("amd")
@@ -19,7 +19,7 @@
         - microcode
         - vendor
 
-    - name: add related package(s)
+    - name: Add related package(s)
       ansible.builtin.package:
         name: "{{ intel_cpu_packages }}"
       when:
@@ -30,7 +30,7 @@
         - package
         - add
 
-    - name: add related package(s)
+    - name: Add related package(s)
       ansible.builtin.package:
         name: "{{ amd_cpu_packages }}"
       when:
@@ -41,7 +41,7 @@
         - package
         - add
 
-    - name: remove non related package
+    - name: Remove non related package
       ansible.builtin.package:
         name: "{{ intel_cpu_packages }}"
         state: absent
@@ -52,7 +52,7 @@
         - package
         - del
 
-    - name: remove non related package
+    - name: Remove non related package
       ansible.builtin.package:
         name: "{{ amd_cpu_packages }}"
         state: absent
